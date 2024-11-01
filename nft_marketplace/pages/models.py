@@ -4,7 +4,7 @@ from pydantic import ValidationError
 import json
 
 
-# Модель для коллекции
+# ______________________________________Модель для коллекции______________________________________
 class Metadata(BaseModel):
     cover_image: HttpUrl
     description: str
@@ -28,7 +28,7 @@ class NFTModel(BaseModel):
     previews: List[Preview]
 
 
-# Модель для итемов коллекции
+# ______________________________________Модель для итемов коллекции______________________________________
 class NFTMetadata(BaseModel):
     description: str
     marketplace: str
@@ -52,3 +52,23 @@ class NFTItem(BaseModel):
 
 class NFTItemsModel(BaseModel):
     nft_items: List[NFTItem]
+
+
+# ______________________________________Модель для nft_______________________________________________
+class ONE_NFT_Metadata(BaseModel):
+    description: str
+    marketplace: str
+    name: str
+    image: HttpUrl
+
+class NFT_Preview(BaseModel):
+    resolution: str
+    url: HttpUrl
+
+class ONE_NFT_Item_Model(BaseModel):
+    address: str
+    index: int
+    owner_address: str
+    collection: Optional[str] = None
+    metadata: ONE_NFT_Metadata
+    previews: List[NFT_Preview]

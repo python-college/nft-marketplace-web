@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 import json
 from pydantic import ValidationError
-from .models import NFTModel, NFTItemsModel
+from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить NFT", 'url_name': 'add_page'},
@@ -30,11 +30,11 @@ def about_us(request):
     }
     return render(request, "about_us/about_us.html", context=data)
 
-
+# общая страница маркетплейса с подборками
 def collections(request):
     return render(request, "collections/collections.html", {'title': 'Collections'})
 
-
+# страница для конкретных коллекций
 def collections_items(request, collection_address):
 
     response_collections = requests.get(f"http://194.87.131.18/nfts/collections/{collection_address}") # GET-запрос для коллекции
@@ -69,32 +69,41 @@ def collections_items(request, collection_address):
     })
 
 
-
-
-
-def nft_item(request, nft_address): #принимаю нфтишки
-    # Make the GET request
-    response = requests.get(f"http://194.87.131.18/nfts/{nft_address}")
-    # Check if request was successful
-    if response.status_code == 200:
-        data = response.json()  # Get JSON data from the response
-        title = data.get("metadata", {}).get("name", "Default Title")
-    else:
-        data = {}  # Empty data if the request failed
-        title = "Default Title"
-    return render(request, "NFT/nft_item.html", {"data": data, 'title': title})
-
-# def collections_nft_items(request, collections_nft_address): #принимаю нфтишки
-#     response = requests.get(f"http://194.87.131.18/nfts/collections/{collections_nft_address}/items")
-#     # Check if request was successful
-#     if response.status_code == 200:
-#         data = response.json()  # Get JSON data from the response
-#         title = data.get("metadata", {}).get("name", "Default Title")
+# def collections_nft_item(request, collection_address, nft_address): #принимаю нфтишки
+#     # Создание GET-запроса для итемов коллекции
+#     response_items_collections = requests.get(f"http://194.87.131.18/nfts/collections/{collection_address}/{nft_address}")
+#     if response_items_collections.status_code == 200:
+#         nfts_data = response_items_collections.json()
+#         title = nfts_data.get("metadata", {}).get("name", "Default Title")
+#         try:
+#             nft_item_data = NFTItemsModel(**nfts_data)
+#             valid_nfts_data = json.loads(nft_item_data.json())
+#         except ValidationError as e:
+#             return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
 #     else:
-#         data = {}  # Empty data if the request failed
-#         title = "Default Title"
-#     return render(request, "NFT/nft_item.html", {"data": data, 'title': title})
+#         return HttpResponse("Ошибка при запросе данных.", status=500)
+#     return render(request, "NFT/nft_item.html",
+#                   {"data": nft_item_data,
+#                    'title': title},
+#                   )
 
+# страница для одиночных NFT
+def nft_item(request, nft_address): #принимаю нфтишки
+    response = requests.get(f"http://194.87.131.18/nfts/{nft_address}")
+    if response.status_code == 200:
+        data_one = response.json()
+        title = data_one.get("metadata", {}).get("name", "Default Title")
+        try:
+            nft_data_one = ONE_NFT_Item_Model(**data_one)
+        except ValidationError as e:
+            return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
+    else:
+        return HttpResponse("Ошибка при запросе данных.", status=500)
+
+    return render(request, "NFT/nft_item.html",
+                  {"data": data_one,
+                   'title': title},
+                  )
 
 
 def feedback(request):
@@ -103,14 +112,6 @@ def feedback(request):
 
 def profile(request):
     return render(request, "profile/profile.html", {'title': 'Profile'})
-
-
-def contact(request):
-    return HttpResponse("Обратная связь")
-
-
-def login(request):
-    return HttpResponse("Авторизация")
 
 
 def page_not_found(request, exception):
