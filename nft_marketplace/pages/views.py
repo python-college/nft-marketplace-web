@@ -6,19 +6,11 @@ from django.template.defaultfilters import slugify
 import json
 from pydantic import ValidationError
 from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model
+from dotenv import load_dotenv
+import os
 
-menu = [{'title': "О сайте", 'url_name': 'about'},
-        {'title': "Добавить NFT", 'url_name': 'add_page'},
-        {'title': "Обратная связь", 'url_name': 'contact'},
-        {'title': "Войти", 'url_name': 'login'}
-        ]
-
-
-cats_db  =[
-    {'id': 1, 'name': 'МАИ'},
-    {'id': 2, 'name': 'КАРТИНЫ'},
-    {'id': 3, 'name': 'ОБЕЗЬЯНЫ'},
-]
+load_dotenv()
+server_ip = os.getenv('SERVER_IP')
 
 def home_page_view(request):
     return render(request, "home/home.html", {'title': 'NFT Marketplace on TON'})
@@ -26,7 +18,6 @@ def home_page_view(request):
 
 def about_us(request):
     data = {
-        'menu': menu
     }
     return render(request, "about_us/about_us.html", context=data)
 
@@ -37,7 +28,7 @@ def collections(request):
 # страница для конкретных коллекций
 def collections_items(request, collection_address):
 
-    response_collections = requests.get(f"http://194.87.131.18/nfts/collections/{collection_address}") # GET-запрос для коллекции
+    response_collections = requests.get(f"http://{server_ip}/nfts/collections/{collection_address}") # GET-запрос для коллекции
     # Проверка успешности запроса
     if response_collections.status_code == 200:
         data = response_collections.json()  # Получаем JSON
@@ -50,7 +41,7 @@ def collections_items(request, collection_address):
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
     # Создание GET-запроса для итемов коллекции
-    response_items_collections = requests.get(f"http://194.87.131.18/nfts/collections/{collection_address}/items")
+    response_items_collections = requests.get(f"http://{server_ip}/nfts/collections/{collection_address}/items")
     if response_items_collections.status_code == 200:
         nfts_data = response_items_collections.json()
         try:
@@ -71,7 +62,7 @@ def collections_items(request, collection_address):
 
 # def collections_nft_item(request, collection_address, nft_address): #принимаю нфтишки
 #     # Создание GET-запроса для итемов коллекции
-#     response_items_collections = requests.get(f"http://194.87.131.18/nfts/collections/{collection_address}/{nft_address}")
+#     response_items_collections = requests.get(f"http://{server_ip}/nfts/collections/{collection_address}/{nft_address}")
 #     if response_items_collections.status_code == 200:
 #         nfts_data = response_items_collections.json()
 #         title = nfts_data.get("metadata", {}).get("name", "Default Title")
@@ -89,7 +80,7 @@ def collections_items(request, collection_address):
 
 # страница для одиночных NFT
 def nft_item(request, nft_address): #принимаю нфтишки
-    response = requests.get(f"http://194.87.131.18/nfts/{nft_address}")
+    response = requests.get(f"http://{server_ip}/nfts/{nft_address}")
     if response.status_code == 200:
         data_one = response.json()
         title = data_one.get("metadata", {}).get("name", "Default Title")
