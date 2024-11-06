@@ -7,10 +7,10 @@ import json
 from pydantic import ValidationError
 from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model
 from dotenv import load_dotenv
+from django.conf import settings
 import os
 
-load_dotenv()
-server_ip = os.getenv('SERVER_IP')
+server_ip = settings.SERVER_IP
 
 def home_page_view(request):
     return render(request, "home/home.html", {'title': 'NFT Marketplace on TON'})
