@@ -79,8 +79,8 @@ def collections_items(request, collection_address):
 #                   )
 
 # страница для одиночных NFT
-def nft_item(request, nft_address): #принимаю нфтишки
-    response = requests.get(f"http://{server_ip}/nfts/{nft_address}")
+def nft_item(request, nft_item_address, collection_address): #принимаю нфтишки
+    response = requests.get(f"http://{server_ip}/nfts/{nft_item_address}")
     if response.status_code == 200:
         data_one = response.json()
         title = data_one.get("metadata", {}).get("name", "Default Title")

@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ nft_item.metadata.name }}</h5>
                 <p class="card-text d-inline-block text-truncate" style="max-width: 200px;">{{ nft_item.metadata.description }}</p>
-                <a href="/nfts/{{nft_item.address}}/" class="btn btn-primary w-100 mt-2">Go somewhere</a>
+                <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/" class="btn btn-primary w-100 mt-2">Go somewhere</a>
             </div>
         </div>
     {% endfor %}

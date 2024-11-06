@@ -1,5 +1,5 @@
 from pydantic import BaseModel, HttpUrl
-from typing import List, Optional
+from typing import List, Optional, Union
 from pydantic import ValidationError
 import json
 
@@ -22,11 +22,10 @@ class Preview(BaseModel):
 
 class NFTModel(BaseModel):
     metadata: Metadata
-    collection_address: str
+    address: str  # Изменено с collection_address на address
     owner_address: str
     items_count: int
     previews: List[Preview]
-
 
 # ______________________________________Модель для итемов коллекции______________________________________
 class NFTMetadata(BaseModel):
@@ -41,11 +40,16 @@ class NFTItemPreview(BaseModel):
     url: HttpUrl
 
 
+class NFTCollection(BaseModel):
+    address: str
+    name: str
+    description: str
+
 class NFTItem(BaseModel):
     address: str
     index: int
     owner_address: str
-    collection: Optional[str] = None
+    collection: Optional[Union[str, NFTCollection]] = None  # Допускаем объект или строку
     metadata: NFTMetadata
     previews: List[NFTItemPreview]
 
@@ -65,10 +69,15 @@ class NFT_Preview(BaseModel):
     resolution: str
     url: HttpUrl
 
+class Collection(BaseModel):
+    address: str
+    name: str
+    description: str
+
 class ONE_NFT_Item_Model(BaseModel):
     address: str
     index: int
     owner_address: str
-    collection: Optional[str] = None
+    collection: Optional[Union[str, Collection]] = None
     metadata: ONE_NFT_Metadata
     previews: List[NFT_Preview]
