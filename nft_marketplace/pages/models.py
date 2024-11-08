@@ -22,7 +22,7 @@ class Preview(BaseModel):
 
 class NFTModel(BaseModel):
     metadata: Metadata
-    address: str  # Изменено с collection_address на address
+    address: str
     owner_address: str
     items_count: int
     previews: List[Preview]
