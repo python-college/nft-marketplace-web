@@ -89,6 +89,11 @@ def profile(request, address):
     return render(request, 'profile/profile.html', {'address': address, 'session_id': session_id, 'title': 'Profile'})
 
 
+def mint_collection(request):
+
+    return render(request, "collections/mint_collections.html", {'title': 'Mint NFT collection'})
+
+
 def page_not_found(request, exception):
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
 
