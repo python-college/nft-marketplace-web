@@ -7,6 +7,7 @@ import json
 from pydantic import ValidationError
 from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model
 from django.conf import settings
+from django.shortcuts import render
 
 def home_page_view(request):
     return render(request, "home/home.html", {'title': 'NFT Marketplace on TON'})
@@ -80,8 +81,12 @@ def feedback(request):
     return render(request, "feedback/feedback.html", {'title': 'Feedback'})
 
 
-def profile(request):
-    return render(request, "profile/profile.html", {'title': 'Profile'})
+def profile(request, address):
+    # Извлечение значений из куки
+    # address = request.COOKIES.get('address_wallet', 'Address not set')
+    session_id = request.COOKIES.get('session_id', 'Session ID not set')
+
+    return render(request, 'profile/profile.html', {'address': address, 'session_id': session_id, 'title': 'Profile'})
 
 
 def page_not_found(request, exception):
