@@ -7,7 +7,7 @@ urlpatterns = [
     path('about/', views.about_us, name='about'),
     path('nfts/collections/', views.collections, name='collections'),
     path('feedback/', views.feedback, name='feedback'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/<str:address>/', views.profile, name='profile'),
     path('nfts/collections/<str:collection_address>/', views.collections_items, name='collections_id'),
     path('nfts/collections/<str:collection_address>/<str:nft_item_address>/', views.nft_item, name='nft_id'),
 
