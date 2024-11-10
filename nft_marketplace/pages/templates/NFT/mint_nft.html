@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+
+<input type="text" id="nftName" placeholder="Название NFT">
+<textarea id="nftDescription" placeholder="Описание NFT"></textarea>
+<input type="file" id="nftImage" accept="image/*">
+
+<button id="createNFTButton">Создать NFT</button>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'pages/js/mint/mint_nft.js' %}"></script>
+
+<script>
+    const collectionAddress = "{{ collection_address }}";
+</script>
+
+{% endblock %}

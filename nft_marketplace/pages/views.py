@@ -90,8 +90,12 @@ def profile(request, address):
 
 
 def mint_collection(request):
-
     return render(request, "collections/mint_collections.html", {'title': 'Mint NFT collection'})
+
+
+def mint_nft(request, collection_address):
+    return render(request, "NFT/mint_nft.html", {'title': 'Mint NFT',
+                                                         'collection_address': collection_address})
 
 
 def page_not_found(request, exception):

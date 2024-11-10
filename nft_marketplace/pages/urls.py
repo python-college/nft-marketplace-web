@@ -11,6 +11,6 @@ urlpatterns = [
     path('nfts/collections/<str:collection_address>/', views.collections_items, name='collections_id'),
     path('nfts/collections/<str:collection_address>/<str:nft_item_address>/', views.nft_item, name='nft_id'),
     path('nfts/create/nft_collection', views.mint_collection, name='mint_collection'),
-
+    path('nfts/create/nft_collection/<str:collection_address>/nft', views.mint_nft, name='mint_nft'),
 ]
 
