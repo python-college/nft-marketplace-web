@@ -51,10 +51,12 @@ def collections_items(request, collection_address):
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
+    address = request.COOKIES.get('address_wallet', 'Address not set')
     return render(request, "collections/collection_items.html", {
         "data": nft_data,
         "title": title,
         "nfts": valid_nfts_data,
+        "user_address": address
     })
 
 
@@ -70,6 +72,7 @@ def nft_item(request, nft_item_address, collection_address): #принимаю �
             return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
+
 
     return render(request, "NFT/nft_item.html",
                   {"data": data_one,

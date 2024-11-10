@@ -20,10 +20,19 @@
 
         </div>
     </div>
-    <a href="/nfts/create/nft_collection/{{ data.address }}/nft">
-        <button> Создать NFT </button>
-    </a>
+
+    {% if data.owner_address == user_address %}
+        <a href="/nfts/create/nft_collection/{{ collection_address }}/nft">
+            <button> Создать NFT </button>
+        </a>
+<!--    {% else %}-->
+<!--        <p>Прав нет для создания. </p>-->
+<!--        <p>Владельцем является: {{data.owner_address}}</p>-->
+    {% endif %}
+
 </div>
+
+
 <!-- Секция с миниатюрами других NFT -->
 
 <h2 class="title text-center" style="margin: 0; padding: 5px 10px; border: 2px solid #fff; border-radius: 8px; display: inline-block;">
@@ -45,3 +54,8 @@
 
 {% endblock %}
 
+{% block script %}
+<script>
+    const user_address = "{{ user_address }}";
+</script>
+{% endblock %}
