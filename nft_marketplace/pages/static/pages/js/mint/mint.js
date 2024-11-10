@@ -40,12 +40,24 @@ function createCollection() {
 
     socket.onmessage = (event) => {
       const response = JSON.parse(event.data);
-      if (response.type === "mint_collection_data_processed") {
-        if (response.message === "Data successfully received and processed") {
-            alert("Коллекция успешно создана!"); // Всплывающее сообщение
-            window.location.href = `/profile/${addressWallet}/`;
+      console.log(response); // Логируем ответ для проверки
 
-        }
+      // Обработка первого ответа
+      if (response.type === "mint_collection_data_processed") {
+        console.log("Коллекция успешно обработана! Ожидание подтверждения");
+
+        // Дальнейшие проверки
+        return;  // Ожидаем второй ответ
+      }
+
+      // Обработка второго ответа
+      if (response.type === "mint_collection_success") {
+        alert("Коллекция создана успешно!");
+        window.location.href = `/profile/${addressWallet}/`;
+        socket.close(); // Закрываем соединение после успешной обработки
+      } else if (response.type === "mint_collection_user_rejects") {
+        alert("Отклонение транзакции пользователем");
+        socket.close(); // Закрываем соединение в случае отклонения
       }
     };
 
@@ -61,4 +73,3 @@ function createCollection() {
 
   reader.readAsDataURL(imageInput);
 }
-

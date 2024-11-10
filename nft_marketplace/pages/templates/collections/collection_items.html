@@ -21,8 +21,9 @@
         </div>
     </div>
 
+
     {% if data.owner_address == user_address %}
-        <a href="/nfts/create/nft_collection/{{ collection_address }}/nft">
+        <a href="/nfts/create/nft_collection/{{ data.address }}/nft">
             <button> Создать NFT </button>
         </a>
 <!--    {% else %}-->
