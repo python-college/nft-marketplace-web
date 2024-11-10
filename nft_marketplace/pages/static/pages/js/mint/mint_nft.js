@@ -10,8 +10,9 @@ function createNFT() {
     return;
   }
 
-  const sessionId = getCookie("session_id"); // Получаем session_id из куки
-  const addressWallet = getCookie('address_wallet')
+  const sessionId = getCookie("session_id");
+  const addressWallet = getCookie('address_wallet');
+  const collectionAddress = "коллекция_адрес";
 
   const reader = new FileReader();
   reader.onload = () => {
@@ -34,9 +35,24 @@ function createNFT() {
 
     socket.onmessage = (event) => {
       const response = JSON.parse(event.data);
-      if (response.type === "mint_nft_data_processed" && response.message === "Data successfully received and processed") {
+      console.log(response); // Логируем ответ для проверки
+
+      // Обработка первого ответа
+      if (response.type === "mint_nft_data_processed") {
+        console.log("Данные для создания NFT успешно получены!");
+
+        // Ждем второй ответ
+        return;
+      }
+
+      // Обработка второго ответа
+      if (response.type === "mint_nft_success") {
         alert("Минт успешно завершен!");
         window.location.href = `/profile/${addressWallet}/`;
+        socket.close(); // Закрываем соединение после успешного создания NFT
+      } else if (response.type === "mint_nft_user_rejects") {
+        alert("Отклонение транзакции пользователем");
+        socket.close(); // Закрываем соединение в случае отклонения
       }
     };
 

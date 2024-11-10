@@ -32,6 +32,7 @@ def collections_items(request, collection_address):
     if response_collections.status_code == 200:
         data = response_collections.json()  # Получаем JSON
         title = data.get("metadata", {}).get("name", "Default Title")
+        print(data)
         try:
             nft_data = NFTModel(**data)  # Валидируем все через модель
         except ValidationError as e:

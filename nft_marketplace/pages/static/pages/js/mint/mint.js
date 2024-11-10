@@ -46,7 +46,7 @@ function createCollection() {
       if (response.type === "mint_collection_data_processed") {
         console.log("Коллекция успешно обработана! Ожидание подтверждения");
 
-        // Дальнейшие проверки
+
         return;  // Ожидаем второй ответ
       }
 
