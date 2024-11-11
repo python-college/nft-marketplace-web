@@ -6,10 +6,10 @@ import json
 
 # ______________________________________Модель для коллекции______________________________________
 class Metadata(BaseModel):
-    cover_image: HttpUrl
+    cover_image: Optional[HttpUrl]  # Теперь можно передавать None
     description: str
     marketplace: str
-    external_url: HttpUrl
+    external_url: Optional[HttpUrl]  # Теперь можно передавать None
     social_links: List[str]
     name: str
     image: HttpUrl
