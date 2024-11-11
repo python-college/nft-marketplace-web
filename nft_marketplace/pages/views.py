@@ -52,12 +52,16 @@ def collections_items(request, collection_address):
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
-    address = request.COOKIES.get('address_wallet', 'Address not set')
+
+    address = (request.COOKIES.get('address_wallet', 'Address not set')).replace("+", "-")
+    mod_owner_address = data['owner_address'].replace("+", "-")
+
     return render(request, "collections/collection_items.html", {
         "data": nft_data,
         "title": title,
         "nfts": valid_nfts_data,
-        "user_address": address
+        "user_address": address,
+        "mod_owner_address": mod_owner_address,
     })
 
 
@@ -98,6 +102,7 @@ def mint_collection(request):
 
 
 def mint_nft(request, collection_address):
+    print(collection_address)
     return render(request, "NFT/mint_nft.html", {'title': 'Mint NFT',
                                                          'collection_address': collection_address})
 

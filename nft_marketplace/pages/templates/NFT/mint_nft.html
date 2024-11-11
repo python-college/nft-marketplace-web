@@ -12,10 +12,13 @@
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript">
+    const collectionAddress = "{{ collection_address|escapejs }}";
+</script>
 <script src="{% static 'pages/js/mint/mint_nft.js' %}"></script>
 
-<script>
-    const collectionAddress = "{{ collection_address }}";
-</script>
+
+
+
 
 {% endblock %}

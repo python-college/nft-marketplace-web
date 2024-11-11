@@ -10,13 +10,15 @@ function createNFT() {
     return;
   }
 
-  const sessionId = getCookie("session_id");
-  const addressWallet = getCookie('address_wallet');
-  const collectionAddress = "коллекция_адрес";
+
 
   const reader = new FileReader();
   reader.onload = () => {
     const base64Image = reader.result.split(",")[1];
+    const sessionId = getCookie("session_id");
+    const addressWallet = getCookie("address_wallet");
+//    const collectionAddress = "{{ collection_address|escapejs }}";
+    console.log("Collection Address: " + collectionAddress);
 
     const data = {
       session_id: sessionId,
@@ -31,29 +33,30 @@ function createNFT() {
     socket.onopen = () => {
       console.log("WebSocket connection opened for creating NFT");
       socket.send(JSON.stringify(data));
+      console.log(data);
     };
 
     socket.onmessage = (event) => {
       const response = JSON.parse(event.data);
-      console.log(response); // Логируем ответ для проверки
+      console.log("Received WebSocket message:", response);
 
-      // Обработка первого ответа
       if (response.type === "mint_nft_data_processed") {
         console.log("Данные для создания NFT успешно получены!");
-
-        // Ждем второй ответ
-        return;
+        return; // Ждем следующего ответа
       }
 
-      // Обработка второго ответа
       if (response.type === "mint_nft_success") {
         alert("Минт успешно завершен!");
         window.location.href = `/profile/${addressWallet}/`;
-        socket.close(); // Закрываем соединение после успешного создания NFT
+        socket.close();
       } else if (response.type === "mint_nft_user_rejects") {
         alert("Отклонение транзакции пользователем");
-        socket.close(); // Закрываем соединение в случае отклонения
+        socket.close();
       }
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket connection closed");
     };
 
     socket.onerror = (error) => {

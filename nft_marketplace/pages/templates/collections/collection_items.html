@@ -22,14 +22,15 @@
     </div>
 
 
-    {% if data.owner_address == user_address %}
-        <a href="/nfts/create/nft_collection/{{ data.address }}/nft">
-            <button> Создать NFT </button>
-        </a>
-<!--    {% else %}-->
-<!--        <p>Прав нет для создания. </p>-->
-<!--        <p>Владельцем является: {{data.owner_address}}</p>-->
+    {% if mod_owner_address == user_address %}
+    <a href="/nfts/create/nft_collection/{{ data.address }}/nft">
+        <button>Создать NFT</button>
+    </a>
+    {% else %}
+    <p>Прав нет для создания.</p>
+    <p>Владельцем является: {{ data.owner_address }}</p>
     {% endif %}
+
 
 </div>
 
@@ -56,7 +57,7 @@
 {% endblock %}
 
 {% block script %}
-<script>
-    const user_address = "{{ user_address }}";
-</script>
+<!--<script>-->
+<!--    const user_address = getCookie('address_wallet')-->
+<!--</script>-->
 {% endblock %}
