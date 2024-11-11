@@ -37,15 +37,23 @@
         </div>
     </nav>
 </header>
+<div id="overlay" class="overlay">
+                <div class="modal">
+                    <div class="modal-content">
+                        <div id="qrCode"></div>
+                    </div>
+                    <span class="close" id="closeModal">&times;</span>
+                    <p>Подключить Telegram кошелёк</p>
+                </div>
+</div>
 
-<div id="qrCode"></div>
 {% block content %}
 {% endblock %}
 
 <footer class="footer">
     <!-- Footer content here -->
 </footer>
-
+<script src="{% static 'pages/js/authenication/modal.js' %}"></script>
 <script src="{% static 'pages/js/authenication/auth.js' %}"></script>
 </body>
 </html>
