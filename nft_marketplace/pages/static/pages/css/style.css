@@ -9,7 +9,7 @@
             color: #8DCEF2;
         }
         .header {
-            background-color: #04040B;
+            background-color: #121212;
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
@@ -192,24 +192,28 @@
 .modal {
     display: none;
     position: absolute; /* Абсолютное позиционирование */
-    top: 50%;
+    top: 25%;
     left: 50%;
+    justify-content: center;        /* Центрирование по горизонтали */
+    align-items: center;
     transform: translate(-50%, -50%); /* Сдвигаем окно на центр */
-    background-color: #04040B;
+    background-color: #121212;
     padding: 20px;
     border-radius: 8px;
     max-width: 400px;
     width: 90%; /* Ширина окна адаптивная */
+    height: auto;                /* Автоматическая высота в зависимости от контента */
+    max-height: 80vh;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
 }
 
 .modal-content {
-    background-color: #04040B;
+    background-color: #121212;
     display: flex; /* Flexbox для горизонтального размещения */
     align-items: center; /* Выравниваем по центру по вертикали */
     justify-content: center; /* Центрируем внутри модального окна */
-    gap: 10px; /* Уменьшаем расстояние между текстом и QR-кодом */
 }
 
 #qrCode {
@@ -219,9 +223,19 @@
 }
 
 /* Подпись */
-.modal p {
-    font-size: 18px;
-    margin: 0;
+.wallet-text-text {
+    display: inline-flex;         /* Делаем содержимое inline-flex для центровки внутри блока */
+    align-items: center;          /* Выравниваем иконку и текст по вертикали */
+    gap: 8px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;             /* Расстояние между иконкой и текстом */
+    font-size: 18px;              /* Размер текста */
+    color: #FFFFFF;
+}
+
+.wallet-text-image{
+    width: 20px;
+    height: 20px;
 }
 
 /* Кнопка закрытия (крестик) */
@@ -278,11 +292,6 @@
     font-weight: bold;
     margin-bottom: 20px;
 }
-
-
-
-
-
 body {
     background-color: #04040B;
     color: #fff;
