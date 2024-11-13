@@ -21,7 +21,7 @@
     <div class="headar-left">
         <div class="header-logo">
             <a href="/">
-                <img src="https://ton.org/download/ton_symbol.svg" alt="TON Logo">
+                <img class="header-logo-img" src="https://ton.org/download/ton_symbol.svg" alt="TON Logo">
                 <h1 class="logo-text">RareBay</h1>
             </a>
         </div>
@@ -34,15 +34,17 @@
             <input type="text" placeholder="Название коллекции">
         </div>
     </div>
-    <nav class="nav">
-        <div class="nav-group">
-            <a href="{% url 'feedback' %}">Feedback</a>
-            <a href="{% url 'collections' %}">Collections</a>
-        </div>
-        <div id="profileContainer">
-            <button id="connectButton">Подключить кошелек</button>
-        </div>
-    </nav>
+    <div class="header-right">
+        <nav class="nav">
+<!--            <div class="nav-group">-->
+<!--                <a href="{% url 'feedback' %}">Feedback</a>-->
+<!--                <a href="{% url 'collections' %}">Collections</a>-->
+<!--            </div>-->
+            <div id="profileContainer">
+                <button id="connectButton">Подключить кошелек</button>
+            </div>
+        </nav>
+    </div>
 </header>
 <div id="overlay" class="overlay">
     <div class="modal">
