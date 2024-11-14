@@ -32,6 +32,7 @@ def collections_items(request, collection_address):
     if response_collections.status_code == 200:
         data = response_collections.json()  # Получаем JSON
         title = data.get("metadata", {}).get("name", "Default Title")
+        print(data)
         try:
             nft_data = NFTModel(**data)  # Валидируем все через модель
         except ValidationError as e:
@@ -51,10 +52,16 @@ def collections_items(request, collection_address):
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
+
+    address = (request.COOKIES.get('address_wallet', 'Address not set')).replace("+", "-")
+    mod_owner_address = data['owner_address'].replace("+", "-")
+
     return render(request, "collections/collection_items.html", {
         "data": nft_data,
         "title": title,
         "nfts": valid_nfts_data,
+        "user_address": address,
+        "mod_owner_address": mod_owner_address,
     })
 
 
@@ -70,6 +77,7 @@ def nft_item(request, nft_item_address, collection_address): #принимаю �
             return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
+
 
     return render(request, "NFT/nft_item.html",
                   {"data": data_one,
@@ -87,6 +95,16 @@ def profile(request, address):
     session_id = request.COOKIES.get('session_id', 'Session ID not set')
 
     return render(request, 'profile/profile.html', {'address': address, 'session_id': session_id, 'title': 'Profile'})
+
+
+def mint_collection(request):
+    return render(request, "collections/mint_collections.html", {'title': 'Mint NFT collection'})
+
+
+def mint_nft(request, collection_address):
+    print(collection_address)
+    return render(request, "NFT/mint_nft.html", {'title': 'Mint NFT',
+                                                         'collection_address': collection_address})
 
 
 def page_not_found(request, exception):
