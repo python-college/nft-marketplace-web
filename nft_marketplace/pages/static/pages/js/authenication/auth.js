@@ -1,10 +1,14 @@
 function showQRCode(authLink) {
     const qrContainer = document.getElementById('qrCode');
     qrContainer.innerHTML = '';
-    new QRCode(qrContainer, {
-        text: authLink,
-        width: 250,
-        height: 250
+
+    // Генерируем SVG-код QR-кода
+    QRCode.toString(authLink, { type: 'svg', width: 250, errorCorrectionLevel: 'H' }, (err, svg) => {
+        if (err) {
+            console.error('Error generating QR code:', err);
+            return;
+        }
+        qrContainer.innerHTML = svg; // закидываю в контейнер
     });
 }
 
