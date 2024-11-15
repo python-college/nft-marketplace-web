@@ -19,27 +19,47 @@
 
 <body>
 <header class="header">
-    <div class="logo">
-        <a href="/">
-            <img src="https://ton.org/download/ton_symbol.svg" alt="TON Logo">
-            <h1 class="logo__text">RareBay</h1>
-        </a>
-    </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search NFTs, collections, creators...">
-    </div>
-    <nav class="nav">
-        <div class="nav-group">
-            <a href="{% url 'feedback' %}">Feedback</a>
-            <a href="{% url 'collections' %}">Collections</a>
+    <div class="headar-left">
+        <div class="header-logo">
+            <a href="/">
+                <img class="header-logo-img" src="https://ton.org/download/ton_symbol.svg" alt="TON Logo">
+                <h1 class="logo-text">RareBay</h1>
+            </a>
         </div>
-        <div id="profileContainer">
-            <button id="connectButton">Подключить кошелек</button>
+    </div>
+    <div class="header-middle">
+        <div class="header-search-bar">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M11 2a9 9 0 1 1-6.36 15.36l-4.03 4.04a1 1 0 1 1-1.41-1.42l4.03-4.03A9 9 0 0 1 11 2zm0 2a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>
+            </svg>
+            <input type="text" placeholder="Название коллекции">
         </div>
-    </nav>
+    </div>
+    <div class="header-right">
+        <nav class="nav">
+<!--            <div class="nav-group">-->
+<!--                <a href="{% url 'feedback' %}">Feedback</a>-->
+<!--                <a href="{% url 'collections' %}">Collections</a>-->
+<!--            </div>-->
+            <div id="profileContainer">
+                <button id="connectButton">Подключить кошелек</button>
+            </div>
+        </nav>
+    </div>
 </header>
+<div id="overlay" class="overlay">
+    <div class="modal">
+        <div class="modal-content">
+            <div id="qrCode"></div>
+        </div>
+        <span class="close" id="closeModal">&times;</span>
+        <div class="modal-wallet-text">
+            <img class = "wallet-text-image" src="https://ton.org/download/ton_symbol.svg">
+            <p class = "wallet-text-text">TON Connect</p>
+        </div>
+    </div>
+</div>
 
-<div id="qrCode"></div>
 {% block content %}
 {% endblock %}
 
@@ -47,8 +67,10 @@
     <!-- Footer content here -->
 </footer>
 
+
 {% block script %}
 {% endblock %}
+<script src="{% static 'pages/js/authenication/modal.js' %}"></script>
 <script src="{% static 'pages/js/authenication/auth.js' %}"></script>
 </body>
 </html>
