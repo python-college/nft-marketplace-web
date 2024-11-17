@@ -58,10 +58,17 @@ function connectWebSocket() {
             setCookie("session_id", session_id, 7);
             setCookie("address_wallet", address, 7);
 
-            removeQRCode();
+            removeQRCode(); // удаляю qr-code
+            closeModal(); // удаляю модальное окно
             updateConnectButton(address);
         }
+
     };
+
+function closeModal() {
+    const modal = document.getElementById('overlay');
+    modal.style.display = 'none';  // функция для скрытия модального окна
+}
 
     socket.onerror = (error) => console.error("WebSocket Error: ", error);
     socket.onclose = () => console.log("WebSocket connection closed");
