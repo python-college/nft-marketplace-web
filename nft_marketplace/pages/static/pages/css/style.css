@@ -21,14 +21,28 @@ body {
 
 .header-logo a {
     display: flex;
-    align-items: center;
+    align-items: center; /* Центрирует элементы по вертикали */
     text-decoration: none;
 }
 
+.header-logo-img {
+    width: 40px;
+    height: 40px;
+    display: block; /* Убираем возможные отступы в inline-block */
+    margin: 10; /* Обнуляем margin на случай, если он задан */
+}
+
 .logo-text {
-    font-size: 20px;
-    font-weight: 400;
-    color: #A9BCD0;
+    font-size: 28px;
+    font-weight: 500;
+    color: #FFFFFF; /* Изменяем цвет на белый */
+    font-family: "Montserrat", sans-serif;
+    margin-left: 10px; /* Добавляем небольшой отступ слева */
+    line-height: 1; /* Убираем лишние отступы, чтобы текст стал строго по центру */
+    display: flex; /* Включаем flex для текста */
+    align-items: center; /* Центрируем текст по вертикали */
+    transform: translateY(4px);
+    font-stretch: condensed;
 }
 
 .header-middle {
@@ -131,36 +145,36 @@ body {
 @media (max-width: 768px) {
     /* Логотип — уменьшаем текст */
     .header-left .logo-text {
-        font-size: 8px;
+        font-size: 12px;
     }
 
     .header-logo-img {
-        margin-left:4px;
-        width:40px;
-        height:40px;
+        margin-left:1px;
+        width:30px;
+        height:30px;
     }
 
     /* Поисковая строка — минимальная ширина */
     .header-search-bar {
-        width: 100px;
-        padding: 6px 8px;
+        width: 80px;
+        padding: 4px 6px;
     }
 
     .header-search-bar input {
-        font-size: 12px;
-        padding: 4px 8px;
+        font-size: 10px;
+        padding: 4px 6px;
     }
 
-    /* Навигационные ссылки — уменьшаем шрифт и отступы */
+    /* Навигационные ссылки — уменьшаем шрифт и отступы
     .nav a {
         font-size: 12px;
         padding: 3px 5px;
-    }
+    }*/
 
     /* Кнопка "Подключить кошелек" — минимальная ширина и сокращение текста */
     #connectButton {
-        padding: 5px 10px;
-        font-size: 12px;
+        padding: 4px 8px;
+        font-size: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
