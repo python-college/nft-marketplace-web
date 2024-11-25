@@ -1,34 +1,57 @@
-body {
+html, body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #04040B;
-    /*color: #F7F9FB;*/
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #0D0D0D;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 ::selection {
     background-color: #49545F;
     color: #8DCEF2;
 }
 .header {
+    position: fixed;
     background-color: #121212;
     padding: 10px 20px;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
-    overflow-x: auto; /* Горизонтальная прокрутка при нехватке места */
     white-space: nowrap; /* Запрещаем перенос на новую строку */
+    z-index:1000;
 }
 
 .header-logo a {
     display: flex;
-    align-items: center;
+    align-items: center; /* Центрирует элементы по вертикали */
     text-decoration: none;
 }
 
+.header-logo-img {
+    width: 40px;
+    height: 40px;
+    display: block; /* Убираем возможные отступы в inline-block */
+    margin: 10; /* Обнуляем margin на случай, если он задан */
+}
+
 .logo-text {
-    font-size: 20px;
-    font-weight: 400;
-    color: #A9BCD0;
+    font-size: 28px;
+    font-weight: 500;
+    color: #FFFFFF; /* Изменяем цвет на белый */
+    font-family: "Montserrat", sans-serif;
+    margin-left: 10px; /* Добавляем небольшой отступ слева */
+    line-height: 1; /* Убираем лишние отступы, чтобы текст стал строго по центру */
+    display: flex; /* Включаем flex для текста */
+    align-items: center; /* Центрируем текст по вертикали */
+    transform: translateY(4px);
+    font-stretch: condensed;
 }
 
 .header-middle {
@@ -131,40 +154,49 @@ body {
 @media (max-width: 768px) {
     /* Логотип — уменьшаем текст */
     .header-left .logo-text {
-        font-size: 8px;
+        font-size: 12px;
     }
 
     .header-logo-img {
-        margin-left:4px;
-        width:40px;
-        height:40px;
+        margin-left:1px;
+        width:30px;
+        height:30px;
     }
 
     /* Поисковая строка — минимальная ширина */
     .header-search-bar {
-        width: 100px;
-        padding: 6px 8px;
+        width: 80px;
+        padding: 4px 6px;
     }
 
     .header-search-bar input {
-        font-size: 12px;
-        padding: 4px 8px;
+        font-size: 10px;
+        padding: 4px 6px;
     }
 
-    /* Навигационные ссылки — уменьшаем шрифт и отступы */
+    /* Навигационные ссылки — уменьшаем шрифт и отступы
     .nav a {
         font-size: 12px;
         padding: 3px 5px;
-    }
+    }*/
 
     /* Кнопка "Подключить кошелек" — минимальная ширина и сокращение текста */
     #connectButton {
-        padding: 5px 10px;
-        font-size: 12px;
+        padding: 4px 8px;
+        font-size: 10px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .footer {
+        padding: 15px; /* Уменьшаем отступы */
+    }
+    .footer p, .footer a, .footer h4 {
+        font-size: 10px; /* Уменьшаем размер текста */
+    }
+}
+
 }
 
 .collection-description {
@@ -188,6 +220,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 90vh;
+    padding-top: 80px; /* Высота вашей шапки */
+    flex: 1; /* Контейнер занимает всё доступное пространство */
+    padding-bottom: 20px; /* Отступ снизу перед подвалом */
 }
 .nft-card {
     background-color: #16161d;
@@ -371,68 +406,69 @@ body {
     margin-bottom: 20px;
 }
 
-body {
-    background-color: #04040B;
-    color: #fff;
-    font-family: Arial, sans-serif;
-}
-
 .footer {
-    padding: 25px;
-    background-color: #04040B;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 140px;
+  padding: 40px;
+  background-color: #0D0D0D;
+  display: flex;
+  justify-content: space-between;
+  color: #F7F9FB;
+  font-family: 'Inter', sans-serif;
+  margin-top: auto;
 }
 
-.footer .column {
-    flex: 1;
-    margin-right: 40px;
-}
-.footer .column:last-child {
-    margin-right: -20px;
-}
-.footer .social-links a {
-    text-decoration: none;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 10px 15px;
-    margin-right: 10px;
-    display: inline-block;
-    border-radius: 5px;
-    margin-top: 20px;
+.footer-column {
+  margin-left: 10px;
+  flex: 1;
 }
 
-.footer .social-links a:hover {
-    background-color: #333;
+.footer-column h4 {
+  margin-bottom: 10px;
+  color: #F7F9FB;
 }
 
-.footer h4 {
-    margin-bottom: 15px;
-    font-size: 18px;
+.footer-column a {
+  color: #8de4ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.footer a {
-    color: #F7F9FB;
-    text-decoration: none;
-    transition: color 0.075s ease;
+.footer-column a:hover {
+  color: #fff;
 }
 
-.footer a:hover {
-    color: #8de4ff;
+.footer p {
+  margin-bottom: 20px;
+  color: #F7F9FB;
 }
 
-.footer .base-ton {
-    margin-top: 25px;
+.social-links {
+  display: flex;
+  gap: 10px;
 }
 
-.nav a {
-    color: #F7F9FB;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
+.social-btn {
+  text-decoration: none;
+  color: #F7F9FB;
+  border: 1px solid #444;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.social-btn:hover {
+  background-color: #333;
+  color: #8de4ff;
+}
 
+.base-ton {
+  color: #888;
+  margin-top: 20px;
+}
+.footer .base-ton p {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+}
