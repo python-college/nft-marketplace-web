@@ -9,6 +9,7 @@ from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model
 from django.conf import settings
 from django.shortcuts import render
 
+
 def home_page_view(request):
     return render(request, "home/home.html", {'title': 'NFT Marketplace on TON'})
 
@@ -26,8 +27,8 @@ def collections(request):
 
 # страница для конкретных коллекций
 def collections_items(request, collection_address):
-
-    response_collections = requests.get(f"http://{settings.SERVER_IP}/nfts/collections/{collection_address}") # GET-запрос для коллекции
+    response_collections = requests.get(
+        f"http://{settings.SERVER_IP}/nfts/collections/{collection_address}")  # GET-запрос для коллекции
     # Проверка успешности запроса
     if response_collections.status_code == 200:
         data = response_collections.json()  # Получаем JSON
@@ -41,7 +42,8 @@ def collections_items(request, collection_address):
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
     # Создание GET-запроса для итемов коллекции
-    response_items_collections = requests.get(f"http://{settings.SERVER_IP}/nfts/collections/{collection_address}/items")
+    response_items_collections = requests.get(
+        f"http://{settings.SERVER_IP}/nfts/collections/{collection_address}/items")
     if response_items_collections.status_code == 200:
         nfts_data = response_items_collections.json()
         try:
@@ -51,7 +53,6 @@ def collections_items(request, collection_address):
             return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
-
 
     address = (request.COOKIES.get('address_wallet', 'Address not set')).replace("+", "-")
     mod_owner_address = data['owner_address'].replace("+", "-")
@@ -66,7 +67,7 @@ def collections_items(request, collection_address):
 
 
 # страница для одиночных NFT
-def nft_item(request, nft_item_address, collection_address): #принимаю нфтишки
+def nft_item(request, nft_item_address, collection_address):  # принимаю нфтишки
     response = requests.get(f"http://{settings.SERVER_IP}/nfts/{nft_item_address}")
     if response.status_code == 200:
         data_one = response.json()
@@ -78,10 +79,16 @@ def nft_item(request, nft_item_address, collection_address): #принимаю �
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
 
-
+    address = (request.COOKIES.get('address_wallet', 'Address not set')).replace("+", "-")
+    mod_owner_address = data_one['owner_address'].replace("+", "-")
+    print()
     return render(request, "NFT/nft_item.html",
                   {"data": data_one,
-                   'title': title},
+                   'title': title,
+                   'nft_item_address': nft_item_address,
+                   "user_address": address,
+                   "mod_owner_address": mod_owner_address,
+                   },
                   )
 
 
@@ -104,10 +111,13 @@ def mint_collection(request):
 def mint_nft(request, collection_address):
     print(collection_address)
     return render(request, "NFT/mint_nft.html", {'title': 'Mint NFT',
-                                                         'collection_address': collection_address})
+                                                 'collection_address': collection_address})
+
+
+def sell_nft(request, nft_item_address):
+    return render(request, "NFT/sell_nft.html", {'title': 'Sell NFT',
+                                             'nft_item_address': nft_item_address})
 
 
 def page_not_found(request, exception):
     return HttpResponseNotFound("<h1>Страница не найдена</h1>")
-
-

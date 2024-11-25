@@ -59,20 +59,38 @@ class NFTItemsModel(BaseModel):
 
 
 # ______________________________________Модель для nft_______________________________________________
+from typing import List, Optional, Union
+from pydantic import BaseModel, HttpUrl
+
+
 class ONE_NFT_Metadata(BaseModel):
     description: str
     marketplace: str
     name: str
     image: HttpUrl
 
+
 class NFT_Preview(BaseModel):
     resolution: str
     url: HttpUrl
+
 
 class Collection(BaseModel):
     address: str
     name: str
     description: str
+
+
+class SalePrice(BaseModel):
+    value: str
+    token_name: str
+
+
+class SaleInfo(BaseModel):
+    contract_address: str
+    owner_address: str
+    price: SalePrice
+
 
 class ONE_NFT_Item_Model(BaseModel):
     address: str
@@ -80,4 +98,6 @@ class ONE_NFT_Item_Model(BaseModel):
     owner_address: str
     collection: Optional[Union[str, Collection]] = None
     metadata: ONE_NFT_Metadata
+    sale: Optional[SaleInfo] = None
     previews: List[NFT_Preview]
+
