@@ -5,7 +5,6 @@ html, body {
     display: flex;
     flex-direction: column;
 }
-
 body {
     background-color: #0D0D0D;
     color: #fff;
@@ -129,7 +128,7 @@ body {
 }
 
 #connectButton {
-    background: linear-gradient(90deg, #2D83EC, #1AC9FF);
+    background: linear-gradient(90deg, #3069FF, #2D83EC);
     padding: 8px 18px;
     color: #F7F9FB;
     border: none;
@@ -137,6 +136,7 @@ body {
     cursor: pointer;
     font-weight: 600;
     transition: background 0.3s ease;
+    margin-right: 30px;
 }
 .nav .connect-btn:hover {
     background: linear-gradient(90deg, #1AC9FF, #2D83EC);
