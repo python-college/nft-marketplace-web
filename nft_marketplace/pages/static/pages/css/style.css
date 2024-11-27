@@ -223,31 +223,63 @@ body {
     padding-top: 80px; /* Высота вашей шапки */
     flex: 1; /* Контейнер занимает всё доступное пространство */
     padding-bottom: 20px; /* Отступ снизу перед подвалом */
+
+
+/*то для карточки коллекции*/
+.collection-card {
+    background-color: #16161d;
+    border-radius: 10px;
+    padding: 70px;
+    display: flex;
+   /* flex-wrap: wrap; */
+    flex-direction: row;
+    gap: 120px;
+    max-width: 1050px;
 }
-.nft-card {
+.collection-card-image {
+    width: 380px;
+    border-radius: 10px;
+}
+
+.collection-card-title {
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.collection-card-details {
+    flex: 1;
+}
+
+
+/*миниатюры с нфт коллекций*/
+}
+.mini-nft-card {
     width: 14rem;
     height: 20rem;
     border: 2px solid #fff;
     border-radius: 8px;
+    background-color: #16161d;
     overflow: hidden; /* Обрезаем лишнее содержимое */
     position: relative;
     cursor: pointer; /* Указываем, что это элемент с функцией клика */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация для увеличения */
+    z-index: 1;
+    margin: 10px;
 }
-.nft-card:hover {
+.mini-nft-card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    background-color: #0f0f14;
 }
-.nft-card img {
+.mini-nft-card img {
     width: 100%;
     height: 60%; /* Фиксированная высота изображения */
     object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
 }
-.nft-details {
-    flex: 1;
-}
+
 /* Стили для тела карточки */
-.nft-card .card-body {
+.mini-nft-card .mini-nft-card-body {
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -255,13 +287,13 @@ body {
     height: 40%; /* Остаток карточки */
 }
 
-.nft-card .card-title {
+.mini-nft-card .mini-nft-card-title {
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-.nft-card .card-text {
+.mini-nft-card .mini-nft-card-text {
     font-size: 0.85rem;
     color: #ccc;
     text-overflow: ellipsis;
@@ -270,7 +302,7 @@ body {
 }
 
 /* Ссылка на карточке */
-.nft-card a {
+.mini-nft-card a {
     position: absolute;
     top: 0;
     left: 0;
@@ -279,11 +311,24 @@ body {
     z-index: 10; /* Ссылка поверх всего */
     text-decoration: none;
 }
-.title {
-    font-size: 35px;
-    margin-bottom: 20px;
-    margin-top: 10px;
 
+/*для самой нфт(большой)*/
+.nft-card {
+    background-color: #16161d;
+    border-radius: 10px;
+    padding: 70px;
+    display: flex;
+   /* flex-wrap: wrap; */
+    flex-direction: row;
+    gap: 120px;
+    max-width: 1050px;
+}
+.nft-image img {
+    width: 380px;
+    border-radius: 10px;
+}
+.nft-details {
+    flex: 1;
 }
 .auction-button {
     display: inline-block;

@@ -3,14 +3,14 @@
 
 {% block content%}
 <div class="container">
-    <div class="nft-card">
-        <div class="nft-image">
+    <div class="collection-card">
+        <div class="collection-card-image">
             <img src="{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
         </div>
-        <div class="nft-details">
-            <div class="title">{{ data.metadata.name }}</div>
-            <div class="description">{{data.metadata.description}}</div>
-            <div class="auction-info">
+        <div class="collection-card-details">
+            <div class="collection-card-title">{{ data.metadata.name }}</div>
+            <div class="collection-card-description">{{data.metadata.description}}</div>
+            <div class="collection-card-auction-info">
                 <p>До конца аукциона: <strong>4 часа 17 минут</strong></p>
                 <p>Минимальная ставка: <strong>10 TON (~51,35 $)</strong></p>
                 <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
@@ -30,11 +30,7 @@
     <p>Прав нет для создания.</p>
     <p>Владельцем является: {{ data.owner_address }}</p>
     {% endif %}
-
-
 </div>
-
-
 <!-- Секция с миниатюрами других NFT -->
 
 <h2 class="title text-center" style="margin: 0; padding: 5px 10px; border: 2px solid #fff; border-radius: 8px; display: inline-block;">
@@ -43,12 +39,12 @@
 
 <div class="container" style="margin-top: 5px;">
     {% for nft_item in nfts.nft_items %}
-        <div class="nft-card text-bg-dark d-inline-block mb-3 me-2">
+        <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
             <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>
             <img src="{{ nft_item.metadata.image }}" alt="{{ nft_item.metadata.name }}">
-            <div class="card-body">
-        <h5 class="card-title">{{ nft_item.metadata.name }}</h5>
-        <p class="card-text">{{ nft_item.metadata.description }}</p>
+            <div class="mini-nft-card-body">
+        <h5 class="mini-nft-card-title">{{ nft_item.metadata.name }}</h5>
+        <p class="mini-nft-card-text">{{ nft_item.metadata.description }}</p>
     </div>
 </div>
     {% endfor %}
