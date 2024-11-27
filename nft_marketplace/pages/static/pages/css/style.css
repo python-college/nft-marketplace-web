@@ -225,21 +225,59 @@ body {
     padding-bottom: 20px; /* Отступ снизу перед подвалом */
 }
 .nft-card {
-    background-color: #16161d;
-    border-radius: 10px;
-    padding: 70px;
-    display: flex;
-   /* flex-wrap: wrap; */
-    flex-direction: row;
-    gap: 120px;
-    max-width: 1050px;
+    width: 14rem;
+    height: 20rem;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Обрезаем лишнее содержимое */
+    position: relative;
+    cursor: pointer; /* Указываем, что это элемент с функцией клика */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация для увеличения */
 }
-.nft-image img {
-    width: 380px;
-    border-radius: 10px;
+.nft-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.nft-card img {
+    width: 100%;
+    height: 60%; /* Фиксированная высота изображения */
+    object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
 }
 .nft-details {
     flex: 1;
+}
+/* Стили для тела карточки */
+.nft-card .card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 40%; /* Остаток карточки */
+}
+
+.nft-card .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.nft-card .card-text {
+    font-size: 0.85rem;
+    color: #ccc;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* Ссылка на карточке */
+.nft-card a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Ссылка поверх всего */
+    text-decoration: none;
 }
 .title {
     font-size: 35px;
