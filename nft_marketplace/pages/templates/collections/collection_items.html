@@ -5,7 +5,7 @@
 <div class="container">
     <div class="collection-card">
         <div class="collection-card-image">
-            <img src="{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
+            <img src="{% static 'pages/images/Logo.svg' %}" alt="{{ data.metadata.name }}">
         </div>
         <div class="collection-card-details">
             <div class="collection-card-title">{{ data.metadata.name }}</div>
@@ -44,7 +44,7 @@
             <img src="{{ nft_item.metadata.image }}" alt="{{ nft_item.metadata.name }}">
             <div class="mini-nft-card-body">
         <h5 class="mini-nft-card-title">{{ nft_item.metadata.name }}</h5>
-        <p class="mini-nft-card-text">{{ nft_item.metadata.description }}</p>
+<!--        <p class="mini-nft-card-text">{{ nft_item.metadata.description }}</p>-->
     </div>
 </div>
     {% endfor %}
