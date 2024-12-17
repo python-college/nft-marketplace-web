@@ -1,0 +1,474 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #0D0D0D;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+::selection {
+    background-color: #49545F;
+    color: #8DCEF2;
+}
+.header {
+    position: fixed;
+    background-color: #121212;
+    padding: 10px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap; /* Запрещаем перенос на новую строку */
+    z-index:1000;
+}
+
+.header-logo a {
+    display: flex;
+    align-items: center; /* Центрирует элементы по вертикали */
+    text-decoration: none;
+}
+
+.header-logo-img {
+    width: 40px;
+    height: 40px;
+    display: block; /* Убираем возможные отступы в inline-block */
+    margin: 10; /* Обнуляем margin на случай, если он задан */
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 500;
+    color: #FFFFFF; /* Изменяем цвет на белый */
+    font-family: "Montserrat", sans-serif;
+    margin-left: 10px; /* Добавляем небольшой отступ слева */
+    line-height: 1; /* Убираем лишние отступы, чтобы текст стал строго по центру */
+    display: flex; /* Включаем flex для текста */
+    align-items: center; /* Центрируем текст по вертикали */
+    transform: translateY(4px);
+    font-stretch: condensed;
+}
+
+.header-middle {
+    margin-left: 8px;  /* Уменьшили отступ слева */
+}
+
+.header-search-bar {
+    display: flex;
+    align-items: center;
+    border: none; /* Убираем границу */
+    border-radius: 20px; /* Скругленные края */
+    padding: 10px 12px;
+    width: 300px;
+    color: rgba(173, 173, 173, 0.08);
+    background-color: rgba(173, 173, 173, 0.08);
+    margin-top: 5 px;
+}
+
+.search-icon {
+  margin-right: 10px;
+  color:#888;
+}
+
+.header-search-bar input {
+    flex: 1;
+    width: 100%;
+    padding: 8px 15px;
+    background-color: rgba(173, 173, 173, 0.08);
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    color: #888;
+}
+
+.header-search-bar input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.header-search-bar input::placeholder {
+    color:#888; /* Светлый цвет для плейсхолдера */
+}
+
+.header-search-bar input:focus::placeholder {
+    color: transparent; /* Плейсхолдер становится прозрачным при фокусе */
+}
+
+.header-search-bar input:not(:placeholder-shown)::placeholder {
+    color: transparent; /* Плейсхолдер исчезает, когда пользователь начинает ввод */
+}
+
+.nav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-group {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: #F7F9FB;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: #8de4ff;
+}
+
+#connectButton {
+    background: linear-gradient(90deg, #2D83EC, #1AC9FF);
+    padding: 8px 18px;
+    color: #F7F9FB;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+.nav .connect-btn:hover {
+    background: linear-gradient(90deg, #1AC9FF, #2D83EC);
+}
+
+
+.header-left,
+.header-middle,
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Стили для уменьшения элементов на маленьких экранах */
+@media (max-width: 768px) {
+    /* Логотип — уменьшаем текст */
+    .header-left .logo-text {
+        font-size: 12px;
+    }
+
+    .header-logo-img {
+        margin-left:1px;
+        width:30px;
+        height:30px;
+    }
+
+    /* Поисковая строка — минимальная ширина */
+    .header-search-bar {
+        width: 80px;
+        padding: 4px 6px;
+    }
+
+    .header-search-bar input {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    /* Навигационные ссылки — уменьшаем шрифт и отступы
+    .nav a {
+        font-size: 12px;
+        padding: 3px 5px;
+    }*/
+
+    /* Кнопка "Подключить кошелек" — минимальная ширина и сокращение текста */
+    #connectButton {
+        padding: 4px 8px;
+        font-size: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .footer {
+        padding: 15px; /* Уменьшаем отступы */
+    }
+    .footer p, .footer a, .footer h4 {
+        font-size: 10px; /* Уменьшаем размер текста */
+    }
+}
+
+}
+
+.collection-description {
+    padding: 40px;
+    text-align: center;
+}
+.collection-description h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #A9BCD0;
+}
+.collection-description p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #F0F0FF;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    padding-top: 80px; /* Высота вашей шапки */
+    flex: 1; /* Контейнер занимает всё доступное пространство */
+    padding-bottom: 20px; /* Отступ снизу перед подвалом */
+}
+.nft-card {
+    background-color: #16161d;
+    border-radius: 10px;
+    padding: 70px;
+    display: flex;
+   /* flex-wrap: wrap; */
+    flex-direction: row;
+    gap: 120px;
+    max-width: 1050px;
+}
+.nft-image img {
+    width: 380px;
+    border-radius: 10px;
+}
+.nft-details {
+    flex: 1;
+}
+.title {
+    font-size: 35px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+}
+.auction-button {
+    display: inline-block;
+    background-color: #1a1a23;
+    color: #F7F9FB;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.auction-button:hover {
+    background-color: #333;
+}
+.description {
+    margin-bottom: 20px;
+}
+.auction-info {
+    background-color: #1a1a23;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.price {
+    font-size: 20px;
+}
+.bid-button {
+    background-color: #3e8fe5;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+
+
+}
+.bid-button:hover {
+    background-color: #2d7fd7;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: absolute; /* Абсолютное позиционирование */
+    top: 25%;
+    left: 50%;
+    justify-content: center;        /* Центрирование по горизонтали */
+    align-items: center;
+    transform: translate(-50%, -50%); /* Сдвигаем окно на центр */
+    background-color: #121212;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%; /* Ширина окна адаптивная */
+    height: auto;                /* Автоматическая высота в зависимости от контента */
+    max-height: 80vh;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #121212;
+    display: flex; /* Flexbox для горизонтального размещения */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    justify-content: center; /* Центрируем внутри модального окна */
+}
+
+#qrCode {
+    opacity: 1;
+    width: 70%; /* Задаем фиксированную ширину QR-коду */
+    height: auto;
+}
+
+/* Подпись */
+.wallet-text-text {
+    display: inline-flex;         /* Делаем содержимое inline-flex для центровки внутри блока */
+    align-items: center;          /* Выравниваем иконку и текст по вертикали */
+    gap: 8px;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;             /* Расстояние между иконкой и текстом */
+    font-size: 18px;              /* Размер текста */
+    color: #FFFFFF;
+}
+
+.wallet-text-image{
+    width: 20px;
+    height: 20px;
+}
+
+/* Кнопка закрытия (крестик) */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+.owner {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a23;
+    padding: 7px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.owner:hover {
+    background-color: #333;
+}
+
+.owner-avatar {
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-bottom: -7px;
+
+}
+
+.owner-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: -15px;
+}
+
+.owner-label {
+    font-size: 12px;
+    color: #8a8a8a;
+    margin-top: 7px;
+}
+
+.owner-address {
+    font-size: 14px;
+    color: #f0f0ff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer {
+  padding: 40px;
+  background-color: #0D0D0D;
+  display: flex;
+  justify-content: space-between;
+  color: #F7F9FB;
+  font-family: 'Inter', sans-serif;
+  margin-top: auto;
+}
+
+.footer-column {
+  margin-left: 10px;
+  flex: 1;
+}
+
+.footer-column h4 {
+  margin-bottom: 10px;
+  color: #F7F9FB;
+}
+
+.footer-column a {
+  color: #8de4ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #fff;
+}
+
+.footer p {
+  margin-bottom: 20px;
+  color: #F7F9FB;
+}
+
+.social-links {
+  display: flex;
+  gap: 10px;
+}
+
+.social-btn {
+  text-decoration: none;
+  color: #F7F9FB;
+  border: 1px solid #444;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.social-btn:hover {
+  background-color: #333;
+  color: #8de4ff;
+}
+
+.base-ton {
+  color: #888;
+  margin-top: 20px;
+}
+.footer .base-ton p {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #888;
+}

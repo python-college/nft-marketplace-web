@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content %}
+
+    <h2>Create New NFT Collection</h2>
+
+<div>
+  <input type="text" id="collectionName" placeholder="Название коллекции" required />
+  <input type="text" id="collectionDescription" placeholder="Описание коллекции" required />
+  <input type="number" id="collectionRoyalty" placeholder="Royalty (в процентах, до 50%)" required />
+  <input type="file" id="collectionImage" accept="image/*" required />
+</div>
+
+<button id="createCollectionButton">Создать коллекцию</button>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'pages/js/mint/mint.js' %}"></script>
+{% endblock %}
+
+
