@@ -6,10 +6,10 @@ import json
 
 # ______________________________________Модель для коллекции______________________________________
 class Metadata(BaseModel):
-    cover_image: Optional[HttpUrl]  # Теперь можно передавать None
+    cover_image: Optional[HttpUrl]
     description: str
     marketplace: str
-    external_url: Optional[HttpUrl]  # Теперь можно передавать None
+    external_url: Optional[HttpUrl]
     social_links: List[str]
     name: str
     image: HttpUrl
@@ -49,7 +49,7 @@ class NFTItem(BaseModel):
     address: str
     index: int
     owner_address: str
-    collection: Optional[Union[str, NFTCollection]] = None  # Допускаем объект или строку
+    collection: Optional[Union[str, NFTCollection]] = None
     metadata: NFTMetadata
     previews: List[NFTItemPreview]
 
@@ -101,3 +101,68 @@ class ONE_NFT_Item_Model(BaseModel):
     sale: Optional[SaleInfo] = None
     previews: List[NFT_Preview]
 
+# ______________________________Модель для топа_____________________
+class NFTCollectionMetadataSchema(BaseModel):
+    cover_image: Optional[HttpUrl] = None
+    description: str = ""
+    marketplace: str = ""
+    external_url: Optional[HttpUrl] = None
+    social_links: List[HttpUrl] = []
+    name: str = ""
+    image: Optional[HttpUrl] = None
+
+
+class NFTCollectionSchema(BaseModel):
+    address: str
+    raw_address: str
+    metadata: NFTCollectionMetadataSchema
+    hype: int
+    owner_address: str
+    items_count: int
+    previews: List[Preview]
+
+
+class TopNFTCollectionSchema(BaseModel):
+    collections: List[NFTCollectionSchema] = []
+    total_count: int
+    page: int
+    page_size: int
+
+
+class Price(BaseModel):
+    value: str
+    token_name: str
+
+class Sale(BaseModel):
+    contract_address: str
+    owner_address: str
+    price: Price
+
+class NFTItemMetadata(BaseModel):
+    description: str = ""
+    marketplace: str = ""
+    name: str = ""
+    image: Optional[HttpUrl] = None
+
+
+class NFTItemSchema(BaseModel):
+    address: str
+    raw_address: str
+    index: int
+    owner_address: Optional[str] = None
+    collection: Optional[Collection] = None
+    metadata: NFTItemMetadata
+    hype: int
+    sale: Optional[Sale] = None
+    previews: List[Preview]
+
+
+class NFTItemsSchema(BaseModel):
+    nft_items: List[NFTItemSchema] = []
+
+
+class TopNFTItemsSchema(BaseModel):
+    nft_items: List[NFTItemSchema]
+    total_count: int
+    page: int
+    page_size: int

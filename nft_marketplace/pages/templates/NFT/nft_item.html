@@ -27,20 +27,39 @@
                     <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
                 </div>
             </a>
-            <button class="bid-button" id="buyNFTButton">Купить NFT</button>
+            {% if mod_owner_address == user_address %}
+            <a href="/nfts/sell/{{ nft_item_address }}">
+                <button class="bid-button">Продать NFT</button>
+            </a>
+<!--            {% else %}-->
+<!--            <p>Прав для продажи нет.</p>-->
+<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
+            {% endif %}
+
+
+            {% if mod_owner_address != user_address %}
+                <button class="bid-button" id="buyNFTButton">Купить NFT</button>
+<!--            {% else %}-->
+<!--            <p>Прав для продажи нет.</p>-->
+<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
+            {% endif %}
+
         </div>
 
     </div>
 </div>
 
-{% if mod_owner_address == user_address %}
-<a href="/nfts/sell/{{ nft_item_address }}">
-    <button>Продать NFT</button>
-</a>
-{% else %}
-<p>Прав для продажи нет.</p>
-<p>Владельцем является: {{ data.owner_address }}</p>
-{% endif %}
+
+<!--проверка для вывода кнопки о продаже нфт-->
+
+<!--{% if mod_owner_address == user_address %}-->
+<!--<a href="/nfts/sell/{{ nft_item_address }}">-->
+<!--    <button>Продать NFT</button>-->
+<!--</a>-->
+<!--{% else %}-->
+<!--<p>Прав для продажи нет.</p>-->
+<!--<p>Владельцем является: {{ data.owner_address }}</p>-->
+<!--{% endif %}-->
 
 <script>
     const nft_item_address = "{{ nft_item_address }}";

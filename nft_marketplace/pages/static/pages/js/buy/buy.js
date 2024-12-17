@@ -17,7 +17,7 @@ function buyNFT() {
   };
 
   // Инициализация WebSocket
-  const socket = new WebSocket("ws://194.87.131.18/ws/buy/nft");
+  const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/buy/nft");
 
   socket.onopen = () => {
     console.log("WebSocket connection opened for buying NFT");
@@ -36,7 +36,7 @@ function buyNFT() {
       socket.close();
     } else if (response.type === "buy_nft_user_rejects") {
       alert("Покупка отклонена пользователем.");
-      window.location.href = `/nft/${nft_item_address}`;
+      window.location.href = `/nfts/collections//${nft_item_address}`;
       socket.close();
     }
   };

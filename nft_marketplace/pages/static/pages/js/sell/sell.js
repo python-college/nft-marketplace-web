@@ -27,7 +27,7 @@ function sellNFT() {
   };
 
   // WS подключение
-  const socket = new WebSocket("ws://194.87.131.18/ws/sell/nft");
+  const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/sell/nft");
 
   socket.onopen = () => {
     console.log("WebSocket connection opened");
