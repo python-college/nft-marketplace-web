@@ -39,7 +39,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script_stop: true
           script: |
-            cd projets/nft-web/
+            cd projects/nft-web/
             git checkout main
             git pull
             cd docker/
