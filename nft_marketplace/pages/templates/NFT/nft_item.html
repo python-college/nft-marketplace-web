@@ -2,35 +2,33 @@
 {% load static %}
 
 {% block content%}
-    <div class="container">
-        <div class="nft-card">
-            <div class="nft-image">
-                <img src= "{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
-            </div>
-            <div class="nft-details">
-    <div class="title">{{ data.metadata.name }}</div>
-    <div class="description">{{ data.metadata.description }}</div>
-
-                <div class="auction-info">
-                    <a href="#" class="auction-button">
-                        <p>До конца аукциона: <strong>4 часа 17 минут</strong></p>
-                        <p>Минимальная ставка: <strong>10 TON (~51,35 $)</strong></p>
-                        <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
-                    </a>
-                </div>
-
-                <a href="/profile/{{ owner_address }}" class="owner">
-                    <span><img src= "{{data.metadata.image}}" alt="{{ data.metadata.name }}", class="owner-avatar"></span>
-                    <div class="owner-info">
-                        
-                        <span class="owner-label">Owner:</span>
-                        <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
-                    </div>
-                </a>
-
-                <button class="bid-button">Сделать ставку</button>
-                </div>
-
-        </div>
+<div class="nft-card">
+    <div class="nft-image">
+        <img src= "{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
     </div>
+    <div class="nft-details">
+<div class="title">{{ data.metadata.name }}</div>
+<div class="description">{{ data.metadata.description }}</div>
+
+        <div class="auction-info">
+            <a href="#" class="auction-button">
+                <p>До конца аукциона: <strong>4 часа 17 минут</strong></p>
+                <p>Минимальная ставка: <strong>10 TON (~51,35 $)</strong></p>
+                <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
+            </a>
+        </div>
+
+        <a href="/profile/{{ owner_address }}" class="owner">
+            <span><img src= "{{data.metadata.image}}" alt="{{ data.metadata.name }}", class="owner-avatar"></span>
+            <div class="owner-info">
+
+                <span class="owner-label">Owner:</span>
+                <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
+            </div>
+        </a>
+
+        <button class="bid-button">Сделать ставку</button>
+        </div>
+
+</div>
 {% endblock %}
