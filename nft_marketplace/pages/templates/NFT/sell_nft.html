@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+
+ <h1>Sell Your NFT</h1>
+    <label for="priceInput">Price:</label>
+    <input type="number" id="priceInput" placeholder="Enter price">
+    <button id="sellNFTButton">Sell NFT</button>
+
+<script>
+    const nft_item_address = "{{ nft_item_address }}";
+</script>
+
+{% endblock %}
+
+{% block script%}
+<script src="{% static 'pages/js/sell/sell.js' %}"></script>
+{% endblock %}

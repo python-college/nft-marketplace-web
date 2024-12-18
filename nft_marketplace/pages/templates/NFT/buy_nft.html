@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Buy NFT</h1>
+<button id="buyNFTButton">Buy NFT</button>
+
+<!-- Передача адреса NFT через data-атрибут -->
+<script>
+    const nft_item_address = "{{ nft_address|escapejs }}";
+</script>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'pages/js/buy/buy.js' %}"></script>
+{% endblock %}

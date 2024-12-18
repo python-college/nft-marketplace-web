@@ -22,10 +22,10 @@ SERVER_IP = os.getenv('SERVER_IP')
 SECRET_KEY = os.getenv('SECRET_CODE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv("DEBUG") != 'False'
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
-
+ALLOWED_HOSTS = ['localhost', 'rarebay.ru']
 
 # Application definition
 
@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "pages/static",
 ]
+STATIC_ROOT = "/app/staticfiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
