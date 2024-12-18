@@ -31,7 +31,9 @@ function createCollection() {
       base64_image: base64Image
     };
 
-    const socket = new WebSocket("ws://194.87.131.18/ws/create/collection");
+    console.log(data)
+
+    const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/create/collection");
 
     socket.onopen = () => {
       console.log("WebSocket connection opened for creating collection");

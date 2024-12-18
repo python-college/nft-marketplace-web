@@ -2,35 +2,73 @@
 {% load static %}
 
 {% block content%}
-    <div class="container">
-        <div class="nft-card">
-            <div class="nft-image">
-                <img src= "{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
-            </div>
-            <div class="nft-details">
-    <div class="title">{{ data.metadata.name }}</div>
-    <div class="description">{{ data.metadata.description }}</div>
+<div class="container">
+    <div class="nft-card">
+        <div class="nft-image">
+            <img src="{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
+        </div>
+        <div class="nft-details">
+            <div class="title">{{ data.metadata.name }}</div>
+            <div class="description">{{ data.metadata.description }}</div>
 
-                <div class="auction-info">
-                    <a href="#" class="auction-button">
-                        <p>До конца аукциона: <strong>4 часа 17 минут</strong></p>
-                        <p>Минимальная ставка: <strong>10 TON (~51,35 $)</strong></p>
-                        <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
-                    </a>
-                </div>
-
-                <a href="/profile/{{ owner_address }}" class="owner">
-                    <span><img src= "{{data.metadata.image}}" alt="{{ data.metadata.name }}", class="owner-avatar"></span>
-                    <div class="owner-info">
-                        
-                        <span class="owner-label">Owner:</span>
-                        <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
-                    </div>
+            <div class="auction-info">
+                <a href="#" class="auction-button">
+                    <p>До конца аукциона: <strong>4 часа 17 минут</strong></p>
+                    <p>Минимальная ставка: <strong>10 TON (~51,35 $)</strong></p>
+                    <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
                 </a>
+            </div>
 
-                <button class="bid-button">Сделать ставку</button>
+            <a href="/profile/{{ owner_address }}" class="owner">
+                <span><img src="{{data.metadata.image}}" alt="{{ data.metadata.name }}" , class="owner-avatar"></span>
+                <div class="owner-info">
+
+                    <span class="owner-label">Owner:</span>
+                    <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
                 </div>
+            </a>
+            {% if mod_owner_address == user_address %}
+            <a href="/nfts/sell/{{ nft_item_address }}">
+                <button class="bid-button">Продать NFT</button>
+            </a>
+<!--            {% else %}-->
+<!--            <p>Прав для продажи нет.</p>-->
+<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
+            {% endif %}
+
+
+            {% if mod_owner_address != user_address %}
+                <button class="bid-button" id="buyNFTButton">Купить NFT</button>
+<!--            {% else %}-->
+<!--            <p>Прав для продажи нет.</p>-->
+<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
+            {% endif %}
 
         </div>
+
     </div>
+</div>
+
+
+<!--проверка для вывода кнопки о продаже нфт-->
+
+<!--{% if mod_owner_address == user_address %}-->
+<!--<a href="/nfts/sell/{{ nft_item_address }}">-->
+<!--    <button>Продать NFT</button>-->
+<!--</a>-->
+<!--{% else %}-->
+<!--<p>Прав для продажи нет.</p>-->
+<!--<p>Владельцем является: {{ data.owner_address }}</p>-->
+<!--{% endif %}-->
+
+<script>
+    const nft_item_address = "{{ nft_item_address }}";
+
+</script>
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'pages/js/buy/buy.js' %}"></script>
 {% endblock %}
