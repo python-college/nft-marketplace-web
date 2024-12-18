@@ -133,10 +133,12 @@ class Price(BaseModel):
     value: str
     token_name: str
 
+
 class Sale(BaseModel):
     contract_address: str
     owner_address: str
     price: Price
+
 
 class NFTItemMetadata(BaseModel):
     description: str = ""
@@ -166,3 +168,8 @@ class TopNFTItemsSchema(BaseModel):
     total_count: int
     page: int
     page_size: int
+
+
+# _____________________________Модель для итемов профиля__________________________
+class NFTItemsSchema_Profile_Items(BaseModel):
+    nft_items: List[NFTItemSchema] = []
