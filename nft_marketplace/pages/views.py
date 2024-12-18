@@ -165,7 +165,6 @@ def profile(request, address):
                                                     'title': 'Profile',
                                                     'data': data_items_profile})
 
-
 def mint_collection(request):
     return render(request, "collections/mint_collections.html", {'title': 'Mint NFT collection'})
 
