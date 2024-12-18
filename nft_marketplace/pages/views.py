@@ -5,7 +5,8 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 import json
 from pydantic import ValidationError
-from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model, TopNFTCollectionSchema, TopNFTItemsSchema
+from .models import NFTModel, NFTItemsModel, ONE_NFT_Item_Model, TopNFTCollectionSchema, TopNFTItemsSchema, \
+    NFTItemsSchema_Profile_Items
 from django.conf import settings
 from django.shortcuts import render
 
@@ -146,8 +147,23 @@ def profile(request, address):
     # address = request.COOKIES.get('address_wallet', 'Address not set')
     session_id = request.COOKIES.get('session_id', 'Session ID not set')
 
-    return render(request, 'profile/profile.html', {'address': address, 'session_id': session_id, 'title': 'Profile'})
+    response_collections = requests.get(
+        f"http://{settings.SERVER_IP}/content/api/v1/accounts/{address}/items")  # GET-запрос для коллекции
+    # Проверка успешности запроса
+    if response_collections.status_code == 200:
+        data_items = response_collections.json()  # Получаем JSON
+        print(data_items)  # Логируем данные для отладки
+        try:
+            data_items_profile = NFTItemsSchema_Profile_Items(**data_items)
+        except ValidationError as e:
+            return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
+    else:
+        return HttpResponse("Ошибка при запросе данных.", status=500)
 
+    return render(request, 'profile/profile.html', {'address': address,
+                                                    'session_id': session_id,
+                                                    'title': 'Profile',
+                                                    'data': data_items_profile})
 
 def mint_collection(request):
     return render(request, "collections/mint_collections.html", {'title': 'Mint NFT collection'})
