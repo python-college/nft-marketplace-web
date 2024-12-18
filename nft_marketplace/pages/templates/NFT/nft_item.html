@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content%}
-<div class="container">
+
     <div class="nft-card">
         <div class="nft-image">
             <img src="{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
@@ -44,9 +44,9 @@
 <!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
             {% endif %}
 
+        <button class="bid-button">Сделать ставку</button>
         </div>
 
-    </div>
 </div>
 
 
