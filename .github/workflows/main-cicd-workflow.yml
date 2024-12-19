@@ -15,7 +15,7 @@ jobs:
       - name: Build nft-web container
         run: |
           chmod +x ./nft_marketplace/entrypoint.sh
-          docker build -t nft-web-image ./nft_marketplace
+          docker build -t nft-web-image ./nft_marketplace python manage.py runserver 0.0.0.0:8000
       
       - name: Run nft-web container
         run: |
