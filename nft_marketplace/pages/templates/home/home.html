@@ -3,4 +3,38 @@
 
 {% block content%}
 <h1 align="center">САМЫЙ ЛУЧШИЙ В МИРЕ НФТ МАРКЕТПЛЕЙС</h1>
+<h1>Топ Коллекций</h1>
+<ul>
+    {% for collection in top_collections.collections %}
+        <li>
+            <h2>{{ collection.metadata.name }}</h2>
+<!--            <p>Описание: {{ collection.metadata.description }}</p>-->
+<!--            <p>Количество предметов: {{ collection.items_count }}</p>-->
+<!--            <p>Hype: {{ collection.hype }}</p>-->
+<!--            <a href="{{ collection.metadata.external_url }}" target="_blank">Внешняя ссылка</a>-->
+<!--            <ul>-->
+<!--                <li>Социальные ссылки:</li>-->
+<!--                {% for link in collection.metadata.social_links %}-->
+<!--                    <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+            <img src="{{ collection.metadata.image }}" alt="{{ collection.metadata.name }}" style="width: 200px; height: auto;">
+        </li>
+    {% endfor %}
+</ul>
+<h1>Топ NFT</h1>
+<div class="nft-container">
+    {% for nft in top_nfts.nft_items %}
+        <li>
+            <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
+                <img src="{{ nft.metadata.image }}" alt="{{ nft.metadata.name }}" style="width: 200px; height: auto;">
+                <div class="mini-nft-card-body">
+                    <h2>{{ nft.metadata.name }}</h2>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</div>
+
+
 {% endblock %}

@@ -201,8 +201,12 @@ body {
         font-size: 10px; /* Уменьшаем размер текста */
     }
 }
-
-}
+.nft-container {
+        display: flex;
+        flex-wrap: wrap; /* Чтобы элементы переносились на следующую строку при нехватке места */
+        gap: 5px; /* Расстояние между элементами */
+        justify-content: space-around; /* Центрирование и равномерное распределение */
+    }
 
 .collection-description {
     padding: 40px;
