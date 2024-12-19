@@ -43,7 +43,7 @@ function updateConnectButton(address) {
 }
 
 function connectWebSocket() {
-    const socket = new WebSocket("ws://194.87.131.18/ws/auth");
+    const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/auth");
 
     socket.onopen = () => console.log("Connected to WebSocket");
 
