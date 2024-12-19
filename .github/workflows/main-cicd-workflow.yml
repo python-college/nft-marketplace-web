@@ -14,6 +14,7 @@ jobs:
 
       - name: Build nft-web container
         run: |
+          chmod +x ./nft_marketplace/entrypoint.sh
           docker build -t nft-web-image ./nft_marketplace
       
       - name: Run nft-web container
@@ -42,5 +43,7 @@ jobs:
             cd projects/nft-web/
             git checkout main
             git pull
+            chmod +x ./nft_marketplace/entrypoint.sh
             cd docker/
+            docker-compose down
             docker-compose up -d --build

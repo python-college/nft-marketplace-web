@@ -28,7 +28,7 @@ ALLOWED_HOSTS = ['rarebay.ru'] if not DEBUG else ['localhost', 'rarebay.ru']
 
 # SSL
 # SECURE_SSL_REDIRECT = False if not DEBUG else False
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') if not DEBUG else ()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SESSION_COOKIE_SECURE = True if not DEBUG else False
 # CSRF_COOKIE_SECURE = True if not DEBUG else False
 
