@@ -27,22 +27,45 @@
                     <span class="owner-address">{{ data.owner_address|slice:":5" }}...{{ data.owner_address|slice:"-5:" }}</span>
                 </div>
             </a>
-            {% if mod_owner_address == user_address %}
+<!--            {% if mod_owner_address == user_address %}-->
+<!--            {% if on_sale_or_no is not None %}-->
+<!--            <a href="/nfts/sell/{{ nft_item_address }}">-->
+<!--                <button class="bid-button">Продать NFT</button>-->
+<!--            </a>-->
+<!--            {% else %}-->
+<!--            <button class="bid-button">Вы уже выставили на продажу</button>-->
+<!--            {% endif %}-->
+<!--            {% endif %}-->
+
+
+<!--            {% if mod_owner_address != user_address %}-->
+<!--            {% if on_sale_or_no is None %}-->
+<!--            <button class="bid-button">Не продается...</button>-->
+<!--            {% else %}-->
+<!--            <button class="bid-button" id="buyNFTButton">Купить NFT</button>-->
+
+<!--            {% endif %}-->
+<!--            {% endif %}-->
+
+
+            {% if mod_owner_address != user_address and on_sale_or_no is not None %}
+            <button class="bid-button" id="buyNFTButton">Купить NFT</button>
+            {% endif %}
+
+            {% if mod_owner_address != user_address and on_sale_or_no is None %}
+            <button class="bid-button">Не продается...</button>
+            {% endif %}
+
+            {% if mod_owner_address == user_address and on_sale_or_no is None %}
             <a href="/nfts/sell/{{ nft_item_address }}">
                 <button class="bid-button">Продать NFT</button>
             </a>
-<!--            {% else %}-->
-<!--            <p>Прав для продажи нет.</p>-->
-<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
             {% endif %}
 
-
-            {% if mod_owner_address != user_address %}
-                <button class="bid-button" id="buyNFTButton">Купить NFT</button>
-<!--            {% else %}-->
-<!--            <p>Прав для продажи нет.</p>-->
-<!--            <p>Владельцем является: {{ data.owner_address }}</p>-->
+            {% if mod_owner_address == user_address and on_sale_or_no is not None %}
+            <button class="bid-button">Вы уже выставили на продажу</button>
             {% endif %}
+
 
         </div>
 
@@ -63,6 +86,11 @@
 
 <script>
     const nft_item_address = "{{ nft_item_address }}";
+
+
+
+
+
 
 </script>
 

@@ -112,18 +112,27 @@ def nft_item(request, nft_item_address, collection_address):  # принимаю
             return HttpResponse(f"Ошибка валидации данных: {e}", status=400)
     else:
         return HttpResponse("Ошибка при запросе данных.", status=500)
-
+    print(data_one)
     address = (request.COOKIES.get('address_wallet', 'Address not set')).replace("+", "-")
-    mod_owner_address = data_one['owner_address'].replace("+", "-")
+    if data_one['sale'] == None:
+        mod_owner_address = data_one['owner_address'].replace("+", "-")
+    else:
+        mod_owner_address = data_one['sale']['owner_address'].replace("+", "-")
+    on_sale_or_no = data_one['sale']
+    # print(f'Адрес владельца {mod_owner_address}')
+    # print(f'Мой адрес {address}')
+    # print(mod_owner_address == address)
+    # print(f'sale {on_sale_or_no}')
+
     return render(request, "NFT/nft_item.html",
                   {"data": data_one,
                    'title': title,
                    'nft_item_address': nft_item_address,
                    "user_address": address,
                    "mod_owner_address": mod_owner_address,
+                   "on_sale_or_no": on_sale_or_no,
                    },
                   )
-
 
 def feedback(request):
     return render(request, "feedback/feedback.html", {'title': 'Feedback'})
