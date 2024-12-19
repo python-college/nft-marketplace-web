@@ -6,6 +6,9 @@ services:
     container_name: nginx
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl/rarebay.pem:/etc/nginx/ssl/rarebay.ru
+      - ./ssl/rarebay.key:/etc/nginx/ssl/rarebay.key
+      - static_volume:/staticfiles
     ports:
       - "80:80"
     networks:
@@ -20,14 +23,19 @@ services:
     build:
       context: ../nft_marketplace
       dockerfile: Dockerfile
-    # command: gunicorn nft_marketplace.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    command: >
+      sh -c "gunicorn nft_marketplace.wsgi:application --bind 0.0.0.0:8000 --workers 3"
     volumes:
       - .:/app
+      - static_volume:/app/staticfiles
     ports:
       - "8000:8000"
     networks:
       - private
       - public
+
+volumes:
+  static_volume:
 
 networks:
   public:
