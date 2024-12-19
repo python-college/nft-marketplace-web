@@ -11,6 +11,8 @@ COPY ./entrypoint.sh /code/entrypoint.sh
 
 RUN pip install -r /code/requirements.txt
 
+RUN chmod +x ./entrypoint.sh
+
 COPY ./ /code
 
 
