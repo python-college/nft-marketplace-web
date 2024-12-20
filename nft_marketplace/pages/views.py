@@ -40,7 +40,7 @@ def home_page_view(request):
     # return render(request, "home/home.html", {'title': 'NFT Marketplace on TON'}) #ГОООООООООООООООООООООООООООООООООООООООООООООЛЛЛЛЛЛЛЛЛЛЛЛЛЛЛ
     return render(request, "home/home.html", {
         "top_collections": collection_data,
-        "title": 'NFT Marketplace on TON',
+        "title": 'Главная страница',
         "top_nfts": nfts_data,
         # "user_address": address,
         # "mod_owner_address": mod_owner_address,
