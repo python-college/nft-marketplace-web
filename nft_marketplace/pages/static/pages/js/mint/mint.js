@@ -33,7 +33,7 @@ function createCollection() {
 
     console.log(data)
 
-    const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/create/collection");
+    const socket = new WebSocket("wss://api.rarebay.ru/main/api/v1/ws/create/collection");
 
     socket.onopen = () => {
       console.log("WebSocket connection opened for creating collection");

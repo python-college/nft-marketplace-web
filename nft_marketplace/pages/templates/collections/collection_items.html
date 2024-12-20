@@ -16,9 +16,8 @@
             <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
         </div>
         <button class="bid-button">Сделать ставку</button>
-
-
     </div>
+</div>
 </div>
 
 
@@ -37,16 +36,18 @@
     Элементы коллекции
 </h2>
 <div class="container">
-        {% for nft_item in nfts.nft_items %}
-        <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
-            <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>
-            <img src="{{ nft_item.metadata.image }}" alt="{{ nft_item.metadata.name }}">
-            <div class="mini-nft-card-body">
-                <h5 class="mini-nft-card-title">{{ nft_item.metadata.name }}</h5>
-                <!--        <p class="mini-nft-card-text">{{ nft_item.metadata.description }}</p>-->
-            </div>
-        </div>
-        {% endfor %}
+
+{% for nft_item in nfts.nft_items %}
+<div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
+    <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>
+    <img src="{{ nft_item.metadata.image }}" alt="{{ nft_item.metadata.name }}">
+    <div class="mini-nft-card-body">
+        <h5 class="mini-nft-card-title">{{ nft_item.metadata.name }}</h5>
+        <!--        <p class="mini-nft-card-text">{{ nft_item.metadata.description }}</p>-->
+    </div>
+</div>
+{% endfor %}
+
 </div>
 {% endblock %}
 

@@ -202,7 +202,6 @@ body {
     }
 }
 
-}
 
 .collection-description {
     padding: 40px;
@@ -228,7 +227,6 @@ body {
     /*padding-top: 80px; /* Высота вашей шапки */
     flex: 1; /* Контейнер занимает всё доступное пространство */
     /*padding-bottom: 20px; /* Отступ снизу перед подвалом */
-
 
 /*то для карточки коллекции*/
 .collection-card {
