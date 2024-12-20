@@ -24,7 +24,7 @@ SECRET_KEY = os.getenv('SECRET_CODE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG") != 'False'
 
-ALLOWED_HOSTS = ['rarebay.ru'] if not DEBUG else ['localhost', 'rarebay.ru']
+ALLOWED_HOSTS = ['rarebay.ru'] if not DEBUG else ['localhost', 'rarebay.ru', '127.0.0.1']
 
 # SSL
 # SECURE_SSL_REDIRECT = False if not DEBUG else False
