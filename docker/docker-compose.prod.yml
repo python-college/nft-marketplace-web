@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.prod.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl/rarebay.pem:/etc/nginx/ssl/rarebay.ru
+      - ./ssl/rarebay.key:/etc/nginx/ssl/rarebay.key
+      - static_volume:/staticfiles
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - public
+    depends_on:
+      - web
+
+  web:
+    env_file: "../nft_marketplace/.env"
+    container_name: nft-web
+    image: ton-nft-web:latest
+    build:
+      context: ../nft_marketplace
+      dockerfile: Dockerfile
+    command: >
+      sh -c "gunicorn nft_marketplace.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    volumes:
+      - .:/app
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+    networks:
+      - private
+      - public
+
+volumes:
+  static_volume:
+
+networks:
+  public:
+    driver: bridge
+  private:
+    driver: bridge

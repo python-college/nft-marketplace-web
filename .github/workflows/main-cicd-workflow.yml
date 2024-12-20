@@ -1,0 +1,49 @@
+name: Main CI/CD
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test_build_job:
+    name: Test Build
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build nft-web container
+        run: |
+          chmod +x ./nft_marketplace/entrypoint.sh
+          docker build -t nft-web-image ./nft_marketplace
+      
+      - name: Run nft-web container
+        run: |
+          docker run --rm --name nft-web -d nft-web-image python manage.py runserver 0.0.0.0:8000
+          sleep 10
+          docker logs nft-web
+          docker ps | grep nft-web
+          docker stop nft-web
+  
+  deploy_job:
+    needs: test_build_job
+    name: Deploy to Production Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Connect to server
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script_stop: true
+          script: |
+            cd projects/nft-web/
+            git checkout main
+            git pull
+            chmod +x ./nft_marketplace/entrypoint.sh
+            cd docker/
+            docker-compose down
+            docker-compose up -d --build

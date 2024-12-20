@@ -22,10 +22,15 @@ SERVER_IP = os.getenv('SERVER_IP')
 SECRET_KEY = os.getenv('SECRET_CODE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG") != 'False'
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['rarebay.ru'] if not DEBUG else ['localhost', 'rarebay.ru']
 
+# SSL
+# SECURE_SSL_REDIRECT = False if not DEBUG else False
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SESSION_COOKIE_SECURE = True if not DEBUG else False
+# CSRF_COOKIE_SECURE = True if not DEBUG else False
 
 # Application definition
 
@@ -123,6 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "pages/static",
 ]
+STATIC_ROOT = "/app/staticfiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
