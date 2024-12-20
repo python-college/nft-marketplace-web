@@ -8,7 +8,7 @@
     {% for collection in top_collections.collections %}
         <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
             <a href="nfts/collections/{{collection.address}}"></a>
-               <img src="{{ collection.metadata.image }}" alt="{{ collections.metadata.name }}" style="width: 200px; height: auto;">
+               <img src="{{ collection.previews.3.url }}" alt="{{ collections.metadata.name }}" style="width: 200px; height: auto;">
             <div class="mini-nft-card-body">
                 <h5 class="mini-nft-card-title">{{ collection.metadata.name }}</h5>
             </div>
@@ -21,7 +21,7 @@
         <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
             <a href="/nfts/collections/{{nft.collection.address}}/{{nft.address}}/"></a>
 <!--                <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>-->
-            <img src="{{ nft.metadata.image }}" alt="{{ nft.metadata.name }}" style="width: 200px; height: auto;">
+            <img src="{{ nft.previews.3.url }}" alt="{{ nft.metadata.name }}" style="width: 200px; height: auto;">
             <div class="mini-nft-card-body">
                 <h5 class="mini-nft-card-title">{{ nft.metadata.name }}</h5>
             </div>
