@@ -2,37 +2,30 @@
 {% load pages_tags %}
 
 {% block content%}
-<h1 align="center">САМЫЙ ЛУЧШИЙ В МИРЕ НФТ МАРКЕТПЛЕЙС</h1>
-<h1>Топ Коллекций</h1>
-<ul>
+<h2 align="center">САМЫЙ ЛУЧШИЙ В МИРЕ НФТ МАРКЕТПЛЕЙС</h2>
+<h3 align="center">ТОП КОЛЛЕКЦИЙ</h3>
+<div class="container">
     {% for collection in top_collections.collections %}
-        <li>
-            <h2>{{ collection.metadata.name }}</h2>
-<!--            <p>Описание: {{ collection.metadata.description }}</p>-->
-<!--            <p>Количество предметов: {{ collection.items_count }}</p>-->
-<!--            <p>Hype: {{ collection.hype }}</p>-->
-<!--            <a href="{{ collection.metadata.external_url }}" target="_blank">Внешняя ссылка</a>-->
-<!--            <ul>-->
-<!--                <li>Социальные ссылки:</li>-->
-<!--                {% for link in collection.metadata.social_links %}-->
-<!--                    <li><a href="{{ link }}" target="_blank">{{ link }}</a></li>-->
-<!--                {% endfor %}-->
-<!--            </ul>-->
-            <img src="{{ collection.metadata.image }}" alt="{{ collection.metadata.name }}" style="width: 200px; height: auto;">
-        </li>
-    {% endfor %}
-</ul>
-<h1>Топ NFT</h1>
-<div class="nft-container">
-    {% for nft in top_nfts.nft_items %}
-        <li>
-            <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
-                <img src="{{ nft.metadata.image }}" alt="{{ nft.metadata.name }}" style="width: 200px; height: auto;">
-                <div class="mini-nft-card-body">
-                    <h2>{{ nft.metadata.name }}</h2>
-                </div>
+        <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
+            <a href="nfts/collections/{{collection.address}}"></a>
+               <img src="{{ collection.metadata.image }}" alt="{{ collections.metadata.name }}" style="width: 200px; height: auto;">
+            <div class="mini-nft-card-body">
+                <h5 class="mini-nft-card-title">{{ collection.metadata.name }}</h5>
             </div>
-        </li>
+        </div>
+    {% endfor %}
+</div>
+<h3 align="center">ТОП NFT</h3>
+<div class="container">
+    {% for nft in top_nfts.nft_items %}
+        <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
+            <a href="/nfts/collections/{{nft.collection.address}}/{{nft.address}}/"></a>
+<!--                <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>-->
+            <img src="{{ nft.metadata.image }}" alt="{{ nft.metadata.name }}" style="width: 200px; height: auto;">
+            <div class="mini-nft-card-body">
+                <h5 class="mini-nft-card-title">{{ nft.metadata.name }}</h5>
+            </div>
+        </div>
     {% endfor %}
 </div>
 

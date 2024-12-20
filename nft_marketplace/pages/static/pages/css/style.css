@@ -201,12 +201,7 @@ body {
         font-size: 10px; /* Уменьшаем размер текста */
     }
 }
-.nft-container {
-        display: flex;
-        flex-wrap: wrap; /* Чтобы элементы переносились на следующую строку при нехватке места */
-        gap: 5px; /* Расстояние между элементами */
-        justify-content: space-around; /* Центрирование и равномерное распределение */
-    }
+
 
 .collection-description {
     padding: 40px;
@@ -228,11 +223,10 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 90vh;
-    padding-top: 80px; /* Высота вашей шапки */
+    /*height: 90vh;*/
+    /*padding-top: 80px; /* Высота вашей шапки */
     flex: 1; /* Контейнер занимает всё доступное пространство */
-    padding-bottom: 20px; /* Отступ снизу перед подвалом */
-
+    /*padding-bottom: 20px; /* Отступ снизу перед подвалом */
 
 /*то для карточки коллекции*/
 .collection-card {
@@ -246,8 +240,20 @@ body {
     max-width: 1050px;
 }
 .collection-card-image {
-    width: 380px;
-    border-radius: 10px;
+    display: flex; /* Центровка контента */
+    justify-content: center; /* Горизонтальное центрирование */
+    align-items: center; /* Вертикальное центрирование */
+    max-width: 200px; /* Максимальная ширина изображения */
+    max-height: 200px; /* Максимальная высота изображения */
+    overflow: hidden; /* Обрезка, если изображение больше контейнера */
+    border-radius: 10px; /* Радиус скругления */
+}
+
+.collection-card-image img {
+    width: 100%; /* Изображение масштабируется по ширине контейнера */
+    height: auto; /* Сохраняем пропорции */
+    object-fit: cover; /* Изображение заполняет контейнер, обрезая лишнее */
+    border-radius: 10px; /* Применяем скругление и к изображению */
 }
 
 .collection-card-title {
@@ -263,7 +269,7 @@ body {
 /*миниатюры с нфт коллекций*/
 }
 .mini-nft-card {
-    width: 14rem;
+    width: 12rem;
     height: 20rem;
     border: 2px solid #fff;
     border-radius: 8px;
@@ -273,7 +279,7 @@ body {
     cursor: pointer; /* Указываем, что это элемент с функцией клика */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Анимация для увеличения */
     z-index: 1;
-    margin: 10px;
+    margin: 8px;
 }
 .mini-nft-card:hover {
     transform: scale(1.05);

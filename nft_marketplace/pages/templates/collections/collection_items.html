@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content%}
+<div class="container">
 <div class="collection-card">
     <div class="collection-card-image">
-        <img src="{% static 'pages/images/Logo.svg' %}" alt="{{ data.metadata.name }}">
+        <img src="{{data.metadata.image}}" alt="{{ data.metadata.name }}">
     </div>
     <div class="collection-card-details">
         <div class="collection-card-title">{{ data.metadata.name }}</div>
@@ -15,9 +16,8 @@
             <p>Максимальная ставка: <strong>15 TON (~77,02 $)</strong></p>
         </div>
         <button class="bid-button">Сделать ставку</button>
-
-
     </div>
+</div>
 </div>
 
 
@@ -34,6 +34,7 @@
 <h2 class="title text-center" style="margin: 0; padding: 5px 10px; border: 2px solid #fff; border-radius: 8px; display: inline-block;">
     Элементы коллекции
 </h2>
+<div class="container">
 {% for nft_item in nfts.nft_items %}
     <div class="mini-nft-card text-bg-dark d-inline-block mb-3 me-2">
         <a href="/nfts/collections/{{nft_item.collection.address}}/{{nft_item.address}}/"></a>
@@ -44,7 +45,7 @@
         </div>
     </div>
 {% endfor %}
-
+</div>
 {% endblock %}
 
 {% block script %}
