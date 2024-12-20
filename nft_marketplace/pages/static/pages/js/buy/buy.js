@@ -17,7 +17,7 @@ function buyNFT() {
   };
 
   // Инициализация WebSocket
-  const socket = new WebSocket("ws://api.rarebay.ru/main/api/v1/ws/buy/nft");
+  const socket = new WebSocket("wss://api.rarebay.ru/main/api/v1/ws/buy/nft");
 
   socket.onopen = () => {
     console.log("WebSocket connection opened for buying NFT");

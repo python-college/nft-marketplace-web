@@ -27,7 +27,7 @@ function sellNFT() {
   };
 
   // WS подключение
-  const socket = new WebSocket("ws://api.rarebay.ru/main/api/v1/ws/sell/nft");
+  const socket = new WebSocket("wss://api.rarebay.ru/main/api/v1/ws/sell/nft");
 
   socket.onopen = () => {
     console.log("WebSocket connection opened");
