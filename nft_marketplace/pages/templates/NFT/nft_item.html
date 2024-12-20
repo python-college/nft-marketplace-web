@@ -5,7 +5,7 @@
 <div class="container">
     <div class="nft-card">
         <div class="nft-image">
-            <img src="{{ data.metadata.image }}" alt="{{ data.metadata.name }}">
+            <img src="{{ data.previews.3.url }}" alt="{{ data.metadata.name }}">
         </div>
         <div class="nft-details">
             <div class="title">{{ data.metadata.name }}</div>
@@ -20,7 +20,7 @@
             </div>
 
             <a href="/profile/{{ owner_address }}" class="owner">
-                <span><img src="{{data.metadata.image}}" alt="{{ data.metadata.name }}" , class="owner-avatar"></span>
+                <span><img src="{{data.previews.3.url}}" alt="{{ data.metadata.name }}" class="owner-avatar"></span>
                 <div class="owner-info">
 
                     <span class="owner-label">Owner:</span>
