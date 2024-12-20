@@ -28,7 +28,7 @@ function createNFT() {
       base64_image: base64Image
     };
 
-    const socket = new WebSocket("ws://194.87.131.18/main/api/v1/ws/create/nft");
+    const socket = new WebSocket("wss://api.rarebay.ru/main/api/v1/ws/create/nft");
 
     socket.onopen = () => {
       console.log("WebSocket connection opened for creating NFT");
